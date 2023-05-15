@@ -1,0 +1,12 @@
+.usernamediv{
+    fon
+}
+.inputname{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sbmtbtn{
+    color: black;
+    background: #00b800;;
+}

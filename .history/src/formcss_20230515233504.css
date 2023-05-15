@@ -1,0 +1,16 @@
+.usernamediv{
+        font-family: 'Press Start 2P', cursive;
+}
+.inputname{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sbmtbtn{
+    color: black;
+    background: #00b800;;
+        font-family: 'Press Start 2P', cursive;
+        padding: 1rem;
+        border: 0;
+        bor
+}

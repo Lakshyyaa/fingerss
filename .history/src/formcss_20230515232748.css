@@ -1,0 +1,8 @@
+.usernamediv{
+    text-align: center;
+}
+.inputname{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
