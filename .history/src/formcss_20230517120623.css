@@ -1,0 +1,99 @@
+/* .usernamediv {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.inputname,
+.roomid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    border-style: none;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem
+}
+
+.sbmtbtn {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    background: #00b800;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.inpt,
+.rinpt {
+    text-align: center;
+    text-decoration: none;
+    width: 10rem;
+}
+
+.inpt:focus,
+.rinpt:focus {
+    outline: 0
+}
+
+#formelement {
+    padding: 1rem;
+}
+.god{
+    width: 30rem;
+    color: black;
+    background-color:aliceblue;
+    padding: 0;
+    margin: 0;
+} */
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
