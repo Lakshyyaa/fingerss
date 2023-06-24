@@ -5,8 +5,9 @@ function App()
 {
   return(
     <div>
-      {/* <UserName /> */}
-      <MainGame />
+      <UserName />
+      
+      {/* <MainGame /> */}
     </div>
     )
 }

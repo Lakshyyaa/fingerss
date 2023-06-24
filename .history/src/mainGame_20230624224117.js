@@ -1,7 +1,4 @@
-import React, { useState, useEffect, useRef, useContext, useDebugValue, useCallback } from "react";
-import UserName from "./userName";
-import userEvent from "@testing-library/user-event";
-import { type } from "@testing-library/user-event/dist/type";
+import React, { useState, useEffect, useRef } from "react";
 function MainGame(props) {
     let boolStart = (false)
     const [stateBool, setStateBool] = useState(false)
@@ -14,11 +11,8 @@ function MainGame(props) {
     const [wordspm, setWordspm] = useState(0);
     const [accuracy, setAccuracy] = useState(0)
     const countdowndiv = useRef(null)
-    //countdowndiv is a simple div that shows the countdown time and disappears after timeout
     const maindiv = useRef(null)
-    //maindiv is a simple div that shows the entire part besides the countdown the floats over it
     const wordsdiv = useRef(null)
-    //wordsdiv is a simple di
     const wordsRef = useRef(words)
     let greened = []
     let typed
@@ -51,7 +45,6 @@ function MainGame(props) {
     }
     function beginTyping(i) {
         if (boolStart) {
-            // console.log('inside begintyping')
             if (typed === wordsRef.current[i]) {
                 indexx++
                 setIndex(prev => prev + 1)
@@ -99,7 +92,6 @@ function MainGame(props) {
     }
     return (
         <div>
-            {/* <UserName/> */}
             <div className="countdown" ref={countdowndiv}>
                 Begins in: {timerText}
             </div>
@@ -111,7 +103,6 @@ function MainGame(props) {
                         if (stateBool) {
                             if (key < index) {
                                 color = 'green'
-                                // console.log(index)
                             }
                             if (key === index) {
                                 color = 'red'

@@ -6,6 +6,7 @@ function App()
   return(
     <div>
       {/* <UserName /> */}
+      
       <MainGame />
     </div>
     )

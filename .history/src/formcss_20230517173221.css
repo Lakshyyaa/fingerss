@@ -10,10 +10,8 @@
     border: 0;
     border-style: none;
 }
-
-.createbtn,
-.sbmtbtn {
-    border-radius: .5rem;
+.createbtn, .sbmtbtn{
+    border-radius: 1rem;
 }
 
 .form {
@@ -39,7 +37,7 @@
     width: 10rem;
     height: 1.5rem;
     border-color: #00b800;
-    border-style: solid;
+    border-style:solid;
 }
 
 .inpt:focus,
@@ -50,11 +48,10 @@
 #formelement {
     padding: 1rem;
 }
-
-.god {
+.god{
     width: 30rem;
     color: black;
-    background-color: aliceblue;
+    background-color:aliceblue;
     padding: 0;
     margin: 0;
 }

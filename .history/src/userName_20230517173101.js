@@ -68,7 +68,7 @@ function UserName() {
                     </div>
                 </label>
                 <div id="formelement">
-                    <button onClick={e => Create(e)} className="createbtn">
+                    <button onClick={e => Create(e)}>
                         Create Room
                     </button>
                 </div>
@@ -77,7 +77,7 @@ function UserName() {
                         className="sbmtbtn"
                         type="submit"
                         name="ok"
-                        value="JOIN ROOM"
+                        value=""
                         onClick={e => submitted(e)}
                     />
                 </div>

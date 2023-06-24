@@ -38,11 +38,13 @@ function MainGame(props) {
         countdowndiv.current.style.display = 'block'
         maindiv.current.style.opacity = '0.2'
         timerLoop(3)
-        fetch('https://random-word-api.herokuapp.com/word?number=10')
-            .then(x => x.json())
-            .then(y => {
+        let y=[]
+        setWords(y.join(' '))
+        // fetch('https://random-word-api.herokuapp.com/word?number=10')
+            // .then(x => x.json())
+            // .then(y => {
                 setWords(y.join(' '))
-            })
+            // })
     }
     function handlekey(e) {
         setUserInput(e.key)

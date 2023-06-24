@@ -1,1 +1,0 @@
-import MainGame from "./MainGame";

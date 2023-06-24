@@ -1,7 +1,4 @@
-import React, { useState, useEffect, useRef, useContext, useDebugValue, useCallback } from "react";
-import UserName from "./userName";
-import userEvent from "@testing-library/user-event";
-import { type } from "@testing-library/user-event/dist/type";
+import React, { useState, useEffect, useRef } from "react";
 function MainGame(props) {
     let boolStart = (false)
     const [stateBool, setStateBool] = useState(false)

@@ -38,6 +38,7 @@ function MainGame(props) {
         countdowndiv.current.style.display = 'block'
         maindiv.current.style.opacity = '0.2'
         timerLoop(3)
+        y="om gadha hai ekdum"
         fetch('https://random-word-api.herokuapp.com/word?number=10')
             .then(x => x.json())
             .then(y => {
