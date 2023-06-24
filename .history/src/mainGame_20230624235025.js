@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext, useDebugValue, useCallback } from "react";
+import UserName from "./userName";
+import userEvent from "@testing-library/user-event";
+import { type } from "@testing-library/user-event/dist/type";
 function MainGame(props) {
     let boolStart = (false)
     const [stateBool, setStateBool] = useState(false)
@@ -11,13 +14,18 @@ function MainGame(props) {
     const [wordspm, setWordspm] = useState(0);
     const [accuracy, setAccuracy] = useState(0)
     const countdowndiv = useRef(null)
+    //countdowndiv is a simple div that shows the countdown time and disappears after timeout
     const maindiv = useRef(null)
+    //maindiv is a simple div that shows the entire part besides the countdown the floats over it
     const wordsdiv = useRef(null)
+    //wordsdiv is a simple di
     const wordsRef = useRef(words)
     let greened = []
     let typed
     let keyStrokes = 0
     let startTime = 0
+    // useEffect(() => {
+    // }, [words])
     useEffect(() => {
         wordsRef.current = words
         document.addEventListener('keydown', (e) => handlekey(e))
@@ -53,6 +61,7 @@ function MainGame(props) {
                 if (wordsRef.current.split('').length === indexx) {
                     alert("done....")
                 }
+                s(wordsArray.join('')); 
             } else {
                 keyStrokes++
                 let time = ((Date.now() - startTime) / 1000) / 60;
@@ -61,6 +70,10 @@ function MainGame(props) {
                 if (wordsRef.current.split('').length === indexx) {
                     alert("done....")
                 }
+                // console.log('red');
+                // const wordsArray = wordsRef.current.split('');
+                // wordsArray[i] = `<span class="red">${typed}</span>`;
+                // setWords(wordsArray.join(''));
             }
         }
     }
@@ -82,6 +95,7 @@ function MainGame(props) {
     }
     return (
         <div>
+            {/* <UserName/> */}
             <div className="countdown" ref={countdowndiv}>
                 Begins in: {timerText}
             </div>
@@ -93,6 +107,7 @@ function MainGame(props) {
                         if (stateBool) {
                             if (key < index) {
                                 color = 'green'
+                                // console.log(index)
                             }
                             if (key === index) {
                                 color = 'red'

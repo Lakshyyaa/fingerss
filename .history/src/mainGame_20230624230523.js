@@ -20,11 +20,13 @@ function MainGame(props) {
     let startTime = 0
     useEffect(() => {
         wordsRef.current = words
+    }, [words])
+    useEffect(() => {
         document.addEventListener('keydown', (e) => handlekey(e))
         return () => {
             document.removeEventListener('keydown', (e) => handlekey(e))
         }
-    }, [words])
+    }, [])
     const countdown = () => {
         setStart(true)
         countdowndiv.current.style.display = 'block'

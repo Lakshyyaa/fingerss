@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef} from "react";
 function MainGame(props) {
     let boolStart = (false)
     const [stateBool, setStateBool] = useState(false)
@@ -20,11 +20,13 @@ function MainGame(props) {
     let startTime = 0
     useEffect(() => {
         wordsRef.current = words
+    }, [words])
+    useEffect(() => {
         document.addEventListener('keydown', (e) => handlekey(e))
         return () => {
             document.removeEventListener('keydown', (e) => handlekey(e))
         }
-    }, [words])
+    }, [])
     const countdown = () => {
         setStart(true)
         countdowndiv.current.style.display = 'block'
@@ -61,6 +63,10 @@ function MainGame(props) {
                 if (wordsRef.current.split('').length === indexx) {
                     alert("done....")
                 }
+                // console.log('red');
+                // const wordsArray = wordsRef.current.split('');
+                // wordsArray[i] = `<span class="red">${typed}</span>`;
+                // setWords(wordsArray.join(''));
             }
         }
     }
@@ -82,6 +88,7 @@ function MainGame(props) {
     }
     return (
         <div>
+            {/* <UserName/> */}
             <div className="countdown" ref={countdowndiv}>
                 Begins in: {timerText}
             </div>
@@ -93,6 +100,7 @@ function MainGame(props) {
                         if (stateBool) {
                             if (key < index) {
                                 color = 'green'
+                                // console.log(index)
                             }
                             if (key === index) {
                                 color = 'red'

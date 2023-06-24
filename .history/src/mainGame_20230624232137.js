@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 function MainGame(props) {
     let boolStart = (false)
+    let test = false
     const [stateBool, setStateBool] = useState(false)
     const [start, setStart] = useState(false)
     const [timerText, setTimerText] = useState(5)
@@ -14,19 +15,21 @@ function MainGame(props) {
     const maindiv = useRef(null)
     const wordsdiv = useRef(null)
     const wordsRef = useRef(words)
-    let greened = []
     let typed
     let keyStrokes = 0
     let startTime = 0
     useEffect(() => {
         wordsRef.current = words
+    }, [words])
+    useEffect(() => {
         document.addEventListener('keydown', (e) => handlekey(e))
         return () => {
             document.removeEventListener('keydown', (e) => handlekey(e))
         }
-    }, [words])
+    }, [])
     const countdown = () => {
         setStart(true)
+        test = true
         countdowndiv.current.style.display = 'block'
         maindiv.current.style.opacity = '0.2'
         timerLoop(3)
@@ -35,6 +38,7 @@ function MainGame(props) {
             .then(y => {
                 setWords(y.join(' '))
             })
+        console.log(test);
     }
     function handlekey(e) {
         setUserInput(e.key)
@@ -43,6 +47,10 @@ function MainGame(props) {
     }
     function beginTyping(i) {
         if (boolStart) {
+            if (wordsRef.current.split('').length === indexx) {
+                
+                alert("done....")
+            }
             if (typed === wordsRef.current[i]) {
                 indexx++
                 setIndex(prev => prev + 1)
@@ -50,17 +58,12 @@ function MainGame(props) {
                 let time = ((Date.now() - startTime) / 1000) / 60;
                 setWordspm(((keyStrokes / 5) / time).toFixed(1))
                 setAccuracy(((indexx / keyStrokes) * 100).toFixed(1))
-                if (wordsRef.current.split('').length === indexx) {
-                    alert("done....")
-                }
+               
             } else {
                 keyStrokes++
                 let time = ((Date.now() - startTime) / 1000) / 60;
                 setWordspm(((keyStrokes / 5) / time).toFixed(1))
                 setAccuracy(((indexx / keyStrokes) * 100).toFixed(1))
-                if (wordsRef.current.split('').length === indexx) {
-                    alert("done....")
-                }
             }
         }
     }
@@ -111,7 +114,7 @@ function MainGame(props) {
                         );
                     })}
                 </div>
-                <button onClick={() => countdown()} disabled={start}>Start</button>
+                <button onClick={() => countdown()} disabled={test}>Start</button>
                 <h1>WPM: {wordspm}</h1>
                 <h1>Accuracy: {accuracy}%</h1>
             </div>

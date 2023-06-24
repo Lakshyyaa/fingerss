@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 function MainGame(props) {
     let boolStart = (false)
+    let test = false
     const [stateBool, setStateBool] = useState(false)
     const [start, setStart] = useState(false)
     const [timerText, setTimerText] = useState(5)
@@ -14,19 +15,21 @@ function MainGame(props) {
     const maindiv = useRef(null)
     const wordsdiv = useRef(null)
     const wordsRef = useRef(words)
-    let greened = []
     let typed
     let keyStrokes = 0
     let startTime = 0
     useEffect(() => {
         wordsRef.current = words
+    }, [words])
+    useEffect(() => {
         document.addEventListener('keydown', (e) => handlekey(e))
         return () => {
             document.removeEventListener('keydown', (e) => handlekey(e))
         }
-    }, [words])
+    }, [])
     const countdown = () => {
         setStart(true)
+        test = true
         countdowndiv.current.style.display = 'block'
         maindiv.current.style.opacity = '0.2'
         timerLoop(3)
@@ -111,7 +114,8 @@ function MainGame(props) {
                         );
                     })}
                 </div>
-                <button onClick={() => countdown()} disabled={start}>Start</button>
+                <button onClick={() => countdown()} disabled={test}>Start</button>
+                console.console.log();
                 <h1>WPM: {wordspm}</h1>
                 <h1>Accuracy: {accuracy}%</h1>
             </div>

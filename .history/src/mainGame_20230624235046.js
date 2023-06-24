@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext, useDebugValue, useCallback } from "react";
+import UserName from "./userName";
+import userEvent from "@testing-library/user-event";
+import { type } from "@testing-library/user-event/dist/type";
 function MainGame(props) {
     let boolStart = (false)
     const [stateBool, setStateBool] = useState(false)
@@ -18,6 +21,8 @@ function MainGame(props) {
     let typed
     let keyStrokes = 0
     let startTime = 0
+    // useEffect(() => {
+    // }, [words])
     useEffect(() => {
         wordsRef.current = words
         document.addEventListener('keydown', (e) => handlekey(e))
