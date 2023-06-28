@@ -13,6 +13,7 @@ function MainGame(props) {
     let boolStart = false
     let keyStrokes = 0
     let startTime = 0
+    let x=0;
     useEffect(() => {
         wordsRef.current = words
     }, [words])

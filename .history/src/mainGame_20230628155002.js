@@ -41,6 +41,7 @@ function MainGame(props) {
     }
     function handlekey(e) {
         let typed = e.key
+        console.log(x)
         if (boolStart) {
             setIndex(prev => {
                 if (typed === wordsRef.current[prev]) {
