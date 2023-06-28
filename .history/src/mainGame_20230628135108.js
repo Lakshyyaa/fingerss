@@ -2,7 +2,6 @@
 // WPM CHANGES ONLY WHEN TYPED EVENTHOUGH IT SHOULD CHANGE WITH TIME 
 // FIGURE OUT WHY IN TIMER LOOP AND HANDLE WE CANT ACCESS STATE VARS
 // BOTH VALUES OF START ARE LOGGED IN HANDLEKEY
-// MAKE SURE ALERT HAPPENS AT RIGTH TIME
 
 import React, { useState, useEffect, useRef } from "react";
 function MainGame(props) {
@@ -56,7 +55,7 @@ function MainGame(props) {
                 let time = ((Date.now() - startTime) / 1000) / 60;
                 setWordspm(((prev / 5) / time).toFixed(1))
                 setAccuracy(((prev / keyStrokes) * 100).toFixed(1))
-                if (wordsRef.current.split('').length === prev) {
+                if (wordsRef.current.split('').length >= prev - 1) {
                     boolStart = false
                     alert("done....")
                 }

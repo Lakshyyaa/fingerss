@@ -1,14 +1,14 @@
 // PROBLEMS: 
 // WPM CHANGES ONLY WHEN TYPED EVENTHOUGH IT SHOULD CHANGE WITH TIME 
-// FIGURE OUT WHY IN TIMER LOOP AND HANDLE WE CANT ACCESS STATE VARS
-// BOTH VALUES OF START ARE LOGGED IN HANDLEKEY
-// MAKE SURE ALERT HAPPENS AT RIGTH TIME
 
 import React, { useState, useEffect, useRef } from "react";
 function MainGame(props) {
+    let boolStart = (false)
+    const [stateBool, setStateBool] = useState(false)
     const [start, setStart] = useState(false)
     const [timerText, setTimerText] = useState(5)
     const [words, setWords] = useState('')
+    let indexx = 0
     const [index, setIndex] = useState(0)
     const [wordspm, setWordspm] = useState(0);
     const [accuracy, setAccuracy] = useState(0)
@@ -16,16 +16,17 @@ function MainGame(props) {
     const maindiv = useRef(null)
     const wordsdiv = useRef(null)
     const wordsRef = useRef(words)
-    let boolStart = false
+    let typed
     let keyStrokes = 0
     let startTime = 0
     useEffect(() => {
         wordsRef.current = words
-    }, [words])
-    useEffect(() => {
         document.addEventListener('keydown', (e) => handlekey(e))
-    }, [])
-    function countdown() {
+        return () => {
+            document.removeEventListener('keydown', (e) => handlekey(e))
+        }
+    }, [words])
+    const countdown = () => {
         setStart(true)
         countdowndiv.current.style.display = 'block'
         maindiv.current.style.opacity = '0.2'
@@ -46,22 +47,22 @@ function MainGame(props) {
             })
     }
     function handlekey(e) {
-        let typed = e.key
+        console.log('index'index);
+        console.log(indexx);
+        typed = e.key
+        if (wordsRef.current.split('').length === indexx) {
+            boolStart = false
+            alert("done....")
+        }
         if (boolStart) {
-            setIndex(prev => {
-                if (typed === wordsRef.current[prev]) {
-                    prev = prev + 1
-                }
-                keyStrokes++
-                let time = ((Date.now() - startTime) / 1000) / 60;
-                setWordspm(((prev / 5) / time).toFixed(1))
-                setAccuracy(((prev / keyStrokes) * 100).toFixed(1))
-                if (wordsRef.current.split('').length === prev) {
-                    boolStart = false
-                    alert("done....")
-                }
-                return prev;
-            })
+            keyStrokes++
+            if (typed === wordsRef.current[indexx]) {
+                indexx++
+                setIndex(prev => prev + 1)
+            }
+            let time = ((Date.now() - startTime) / 1000) / 60;
+            setWordspm(((indexx / 5) / time).toFixed(1))
+            setAccuracy(((indexx / keyStrokes) * 100).toFixed(1))
         }
     }
     function timerLoop(i) {
@@ -76,6 +77,7 @@ function MainGame(props) {
             countdowndiv.current.style.display = 'none'
             maindiv.current.style.opacity = '1'
             boolStart = true
+            setStateBool(true)
             startTime = Date.now()
         }
     }
@@ -89,11 +91,13 @@ function MainGame(props) {
                 <div ref={wordsdiv} className="wordsdivv">
                     {words.split('').map((char, key) => {
                         let color;
-                        if (key < index) {
-                            color = 'green'
-                        }
-                        else if (key === index) {
-                            color = 'red'
+                        if (stateBool) {
+                            if (key < index) {
+                                color = 'green'
+                            }
+                            if (key === index) {
+                                color = 'red'
+                            }
                         }
                         else {
                             color = 'black'
@@ -116,6 +120,8 @@ function MainGame(props) {
     )
 }
 export default MainGame;
+
+
 
 
 

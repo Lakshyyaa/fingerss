@@ -2,10 +2,10 @@
 // WPM CHANGES ONLY WHEN TYPED EVENTHOUGH IT SHOULD CHANGE WITH TIME 
 // FIGURE OUT WHY IN TIMER LOOP AND HANDLE WE CANT ACCESS STATE VARS
 // BOTH VALUES OF START ARE LOGGED IN HANDLEKEY
-// MAKE SURE ALERT HAPPENS AT RIGTH TIME
 
 import React, { useState, useEffect, useRef } from "react";
 function MainGame(props) {
+    let x = 0
     const [start, setStart] = useState(false)
     const [timerText, setTimerText] = useState(5)
     const [words, setWords] = useState('')
@@ -17,6 +17,7 @@ function MainGame(props) {
     const wordsdiv = useRef(null)
     const wordsRef = useRef(words)
     let boolStart = false
+    let indexx = 0
     let keyStrokes = 0
     let startTime = 0
     useEffect(() => {
@@ -45,24 +46,34 @@ function MainGame(props) {
                 setWords(y.join(' '))
             })
     }
+    function checker(x) {
+        console.log(x);
+        console.log(index);
+        console.log(start);
+    }
     function handlekey(e) {
         let typed = e.key
+        checker(typed)
+        console.log(index);
+        console.log(start);
         if (boolStart) {
-            setIndex(prev => {
-                if (typed === wordsRef.current[prev]) {
-                    prev = prev + 1
-                }
-                keyStrokes++
-                let time = ((Date.now() - startTime) / 1000) / 60;
-                setWordspm(((prev / 5) / time).toFixed(1))
-                setAccuracy(((prev / keyStrokes) * 100).toFixed(1))
-                if (wordsRef.current.split('').length === prev) {
-                    boolStart = false
-                    alert("done....")
-                }
-                return prev;
-            })
+            if (wordsRef.current.split('').length === indexx) {
+                boolStart = false
+                alert("done....")
+            }
+            if (typed === wordsRef.current[indexx]) {
+                indexx++
+                setIndex(prev => {
+                    // console.log(prev);
+                    return prev + 1
+                })
+            }
+            keyStrokes++
+            let time = ((Date.now() - startTime) / 1000) / 60;
+            setWordspm(((indexx / 5) / time).toFixed(1))
+            setAccuracy(((indexx / keyStrokes) * 100).toFixed(1))
         }
+        x++
     }
     function timerLoop(i) {
         if (i > 0) {

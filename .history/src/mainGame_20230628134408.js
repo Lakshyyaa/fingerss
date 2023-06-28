@@ -2,7 +2,6 @@
 // WPM CHANGES ONLY WHEN TYPED EVENTHOUGH IT SHOULD CHANGE WITH TIME 
 // FIGURE OUT WHY IN TIMER LOOP AND HANDLE WE CANT ACCESS STATE VARS
 // BOTH VALUES OF START ARE LOGGED IN HANDLEKEY
-// MAKE SURE ALERT HAPPENS AT RIGTH TIME
 
 import React, { useState, useEffect, useRef } from "react";
 function MainGame(props) {
@@ -22,9 +21,9 @@ function MainGame(props) {
     useEffect(() => {
         wordsRef.current = words
     }, [words])
-    useEffect(() => {
+    useEffect(()=>{
         document.addEventListener('keydown', (e) => handlekey(e))
-    }, [])
+    },[])
     function countdown() {
         setStart(true)
         countdowndiv.current.style.display = 'block'
@@ -48,18 +47,18 @@ function MainGame(props) {
     function handlekey(e) {
         let typed = e.key
         if (boolStart) {
-            setIndex(prev => {
+            setIndex(prev=>{
+                if (wordsRef.current.split('').length === prev) {
+                    boolStart = false
+                    alert("done....")
+                }
                 if (typed === wordsRef.current[prev]) {
-                    prev = prev + 1
+                    prev=prev+1
                 }
                 keyStrokes++
                 let time = ((Date.now() - startTime) / 1000) / 60;
                 setWordspm(((prev / 5) / time).toFixed(1))
                 setAccuracy(((prev / keyStrokes) * 100).toFixed(1))
-                if (wordsRef.current.split('').length === prev) {
-                    boolStart = false
-                    alert("done....")
-                }
                 return prev;
             })
         }

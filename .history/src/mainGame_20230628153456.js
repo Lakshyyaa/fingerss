@@ -51,15 +51,12 @@ function MainGame(props) {
             setIndex(prev => {
                 if (typed === wordsRef.current[prev]) {
                     prev = prev + 1
+                    
                 }
                 keyStrokes++
                 let time = ((Date.now() - startTime) / 1000) / 60;
                 setWordspm(((prev / 5) / time).toFixed(1))
                 setAccuracy(((prev / keyStrokes) * 100).toFixed(1))
-                if (wordsRef.current.split('').length === prev) {
-                    boolStart = false
-                    alert("done....")
-                }
                 return prev;
             })
         }
